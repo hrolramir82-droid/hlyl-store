@@ -1,1 +1,71 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HL&L | Detalles que marcan</title><style>:root{--d:#171717;--g:#b98b35;--c:#faf7f0}*{box-sizing:border-box}body{margin:0;font-family:Arial;color:#171717;background:var(--c)}header{background:#111;color:#fff;padding:16px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:2}.logo{font-size:28px;font-weight:800}.tag{color:#d8b56b;font-size:13px}nav a{color:#fff;text-decoration:none;margin-left:14px;font-size:14px}.hero{padding:65px 6%;text-align:center;background:linear-gradient(135deg,#171717,#333)}.hero h1{color:#fff;font-size:44px;margin:0 0 8px}.hero p{color:#ddd;font-size:19px}.btn{display:inline-block;background:var(--g);color:#fff;padding:13px 22px;border-radius:8px;text-decoration:none;font-weight:700}section{padding:42px 6%;max-width:1200px;margin:auto}h2{text-align:center;font-size:30px}.filters{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:25px}.filters button{border:1px solid #ccc;background:#fff;padding:9px 14px;border-radius:20px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}.card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 18px #0001}.card img{width:100%;height:220px;object-fit:cover;background:#eee}.card-body{padding:16px}.card h3{margin:0 0 7px}.price{font-size:20px;font-weight:800;color:#9a6d16;margin:8px 0}.card button{width:100%;padding:11px;border:0;border-radius:8px;background:#111;color:#fff}.info{background:#fff;border-radius:14px;padding:25px;line-height:1.6}footer{text-align:center;background:#111;color:#ccc;padding:30px}@media(max-width:650px){.hero h1{font-size:34px}nav{display:none}}</style></head><body><header><div><div class="logo">HL&L</div><div class="tag">Detalles que marcan</div></div><nav><a href="#productos">Productos</a><a href="#personalizados">Personalizados</a><a href="#contacto">Contacto</a></nav></header><div class="hero"><h1>Detalles que marcan</h1><p>Grabados personalizados para regalar y sorprender.</p><a class="btn" href="https://wa.me/595984334677?text=Hola%20HL%26L%2C%20quiero%20consultar%20por%20un%20producto." target="_blank">Pedir por WhatsApp</a></div><section id="productos"><h2>Nuestros productos</h2><div class="filters" id="filters"></div><div class="grid" id="products"></div></section><section id="personalizados"><h2>Personalizá tu regalo</h2><div class="info"><p>Elegí el producto, indicá el nombre, frase o diseño que querés grabar y escribinos por WhatsApp.</p><p><b>Productos:</b> termos, Hoppies, vasos, billeteras y otros detalles personalizados.</p></div></section><section id="contacto"><h2>Contacto</h2><div class="info"><p><b>WhatsApp:</b> <a href="https://wa.me/595984334677">0984 334 677</a></p><p><b>HL&L Store Online</b></p></div></section><footer>© 2026 HL&L Store Online · Detalles que marcan</footer><script>let products=[];const money=n=>n?new Intl.NumberFormat('es-PY').format(n)+' Gs.':'Consultar';function render(list=products){document.getElementById('products').innerHTML=list.map((p,i)=>`<article class="card"><img src="${p.image||'https://placehold.co/600x500?text=HL%26L'}" alt="${p.name}"><div class="card-body"><h3>${p.name}</h3><p>${p.description||''}</p><div class="price">${money(p.price)}</div><button onclick="order(${i})">Consultar por WhatsApp</button></div></article>`).join('')}function order(i){const p=products[i];location.href='https://wa.me/595984334677?text='+encodeURIComponent('Hola HL&L, quiero consultar por: '+p.name+'.')};fetch('products.json').then(r=>r.json()).then(d=>{products=d;let cats=['Todos',...new Set(d.map(x=>x.category))];document.getElementById('filters').innerHTML=cats.map(c=>`<button onclick="render(${JSON.stringify(c)}==='Todos'?products:products.filter(p=>p.category===${JSON.stringify(c)}))">${c}</button>`).join('');render()})</script></body></html>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HL&L — Detalles que marcan</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f7f5f1;color:#171717}
+header{background:#171717;color:white;padding:24px 18px 75px}.top,.hero,main{max-width:1100px;margin:auto}
+.top{display:flex;justify-content:space-between;align-items:center}.logo{font-size:30px;font-weight:900}.logo i{color:#c9a15a;font-style:normal}
+.top a,.hero a,.card a{text-decoration:none}.top a{color:white;border:1px solid #555;padding:9px 14px;border-radius:20px}
+.hero{padding-top:55px}h1{font-size:clamp(38px,7vw,68px);margin:0 0 12px}.hero p{font-size:18px;color:#ddd;max-width:650px;line-height:1.5}
+.hero a{display:inline-block;background:white;color:#111;padding:12px 18px;border-radius:10px;font-weight:bold}
+main{margin-top:-38px;padding:0 15px 50px}.box{background:white;border-radius:20px;padding:18px;border:1px solid #e7e2da}
+.filters{display:flex;gap:8px;overflow:auto}button{border:1px solid #ddd;background:white;padding:10px 15px;border-radius:20px;font-weight:bold;white-space:nowrap}button.active{background:#171717;color:white}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}.card{border:1px solid #e8e3db;border-radius:16px;overflow:hidden;background:white}.card>img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+.body{padding:16px}small{color:#b08443;font-weight:bold;text-transform:uppercase}h3{margin:7px 0;font-size:20px}.cap{color:#777;margin:0 0 8px;font-weight:bold}.body p{color:#666;line-height:1.45;font-size:14px;min-height:42px}strong{font-size:22px;display:block;margin:12px 0}.card a{display:block;text-align:center;background:#178b4b;color:white;padding:12px;border-radius:10px;font-weight:bold}
+.note{text-align:center;color:#777;padding:25px 5px 5px;font-size:14px}footer{text-align:center;padding:30px;color:#777}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:540px){.grid{grid-template-columns:1fr}.top>a{display:none}}
+</style></head><body>
+<header><div class="top"><div class="logo">HL<i>&</i>L</div><a href="https://wa.me/595984334677">WhatsApp</a></div>
+<div class="hero"><h1>Detalles que marcan.</h1><p>Productos personalizados con grabado láser para regalar o disfrutar todos los días.</p><a href="#catalogo">Ver catálogo</a></div></header>
+<main id="catalogo"><div class="box"><div class="filters">
+<button class="active" data-f="Todos">Todos</button><button data-f="Hoppies">Hoppies</button><button data-f="Termos">Termos</button><button data-f="Billeteras">Billeteras</button>
+</div><section class="grid"><article class="card" data-cat="Hoppies">
+<img src="images/hoppie-1l.jpg" alt="Hoppie 1 litro personalizado">
+<div class="body"><small>Hoppies</small><h3>Hoppie 1 litro personalizado</h3><p class='cap'>1 litro</p>
+<p>Personalizable con grabado láser. Consultá los colores disponibles.</p>
+<strong>G. 80.000</strong>
+<a href="https://wa.me/595984334677?text=Hola%2C%20quiero%20consultar%20por%20Hoppie%201%20litro%20personalizado%20y%20los%20colores%20disponibles." target="_blank">Consultar por WhatsApp</a></div></article><article class="card" data-cat="Hoppies">
+<img src="images/hoppie-820ml.jpg" alt="Hoppie 820 ml personalizado">
+<div class="body"><small>Hoppies</small><h3>Hoppie 820 ml personalizado</h3><p class='cap'>820 ml</p>
+<p>Personalizable con grabado láser. Consultá los colores disponibles.</p>
+<strong>G. 70.000</strong>
+<a href="https://wa.me/595984334677?text=Hola%2C%20quiero%20consultar%20por%20Hoppie%20820%20ml%20personalizado%20y%20los%20colores%20disponibles." target="_blank">Consultar por WhatsApp</a></div></article><article class="card" data-cat="Hoppies">
+<img src="images/hoppie-650ml.jpg" alt="Hoppie 650 ml personalizado">
+<div class="body"><small>Hoppies</small><h3>Hoppie 650 ml personalizado</h3><p class='cap'>650 ml</p>
+<p>Personalizable con grabado láser. Consultá los colores disponibles.</p>
+<strong>G. 65.000</strong>
+<a href="https://wa.me/595984334677?text=Hola%2C%20quiero%20consultar%20por%20Hoppie%20650%20ml%20personalizado%20y%20los%20colores%20disponibles." target="_blank">Consultar por WhatsApp</a></div></article><article class="card" data-cat="Hoppies">
+<img src="images/hoppie-400ml.jpg" alt="Hoppie 400 ml personalizado">
+<div class="body"><small>Hoppies</small><h3>Hoppie 400 ml personalizado</h3><p class='cap'>400 ml</p>
+<p>Personalizable con grabado láser. Consultá los colores disponibles.</p>
+<strong>G. 55.000</strong>
+<a href="https://wa.me/595984334677?text=Hola%2C%20quiero%20consultar%20por%20Hoppie%20400%20ml%20personalizado%20y%20los%20colores%20disponibles." target="_blank">Consultar por WhatsApp</a></div></article><article class="card" data-cat="Termos">
+<img src="images/termo-25l.jpg" alt="Termo para tereré 2,5 litros">
+<div class="body"><small>Termos</small><h3>Termo para tereré 2,5 litros</h3><p class='cap'>2,5 litros</p>
+<p>Personalizable con grabado láser. Consultá los colores disponibles.</p>
+<strong>G. 160.000</strong>
+<a href="https://wa.me/595984334677?text=Hola%2C%20quiero%20consultar%20por%20Termo%20para%20terer%C3%A9%202%2C5%20litros%20y%20los%20colores%20disponibles." target="_blank">Consultar por WhatsApp</a></div></article><article class="card" data-cat="Termos">
+<img src="images/termo-13l.jpg" alt="Termo 1,3 litros personalizado">
+<div class="body"><small>Termos</small><h3>Termo 1,3 litros personalizado</h3><p class='cap'>1,3 litros</p>
+<p>Personalizable con grabado láser. Consultá los colores disponibles.</p>
+<strong>G. 125.000</strong>
+<a href="https://wa.me/595984334677?text=Hola%2C%20quiero%20consultar%20por%20Termo%201%2C3%20litros%20personalizado%20y%20los%20colores%20disponibles." target="_blank">Consultar por WhatsApp</a></div></article><article class="card" data-cat="Termos">
+<img src="images/termo-galon-2l.jpg" alt="Termo tipo galón 2 litros">
+<div class="body"><small>Termos</small><h3>Termo tipo galón 2 litros</h3><p class='cap'>2 litros</p>
+<p>Personalizable con grabado láser. Consultá los colores disponibles.</p>
+<strong>G. 130.000</strong>
+<a href="https://wa.me/595984334677?text=Hola%2C%20quiero%20consultar%20por%20Termo%20tipo%20gal%C3%B3n%202%20litros%20y%20los%20colores%20disponibles." target="_blank">Consultar por WhatsApp</a></div></article><article class="card" data-cat="Termos">
+<img src="images/termo-mate-1l.jpg" alt="Termo para mate 1 litro">
+<div class="body"><small>Termos</small><h3>Termo para mate 1 litro</h3><p class='cap'>1 litro</p>
+<p>Personalizable con grabado láser. Consultá los colores disponibles.</p>
+<strong>G. 100.000</strong>
+<a href="https://wa.me/595984334677?text=Hola%2C%20quiero%20consultar%20por%20Termo%20para%20mate%201%20litro%20y%20los%20colores%20disponibles." target="_blank">Consultar por WhatsApp</a></div></article><article class="card" data-cat="Billeteras">
+<img src="images/billetera.jpg" alt="Billetera personalizada">
+<div class="body"><small>Billeteras</small><h3>Billetera personalizada</h3>
+<p>Personalizable con grabado láser. Consultá los colores disponibles.</p>
+<strong>G. 110.000</strong>
+<a href="https://wa.me/595984334677?text=Hola%2C%20quiero%20consultar%20por%20Billetera%20personalizada%20y%20los%20colores%20disponibles." target="_blank">Consultar por WhatsApp</a></div></article></section>
+<div class="note">🎨 Colores disponibles según stock. Consultá por WhatsApp antes de realizar tu pedido.</div></div></main>
+<footer>HL&L Store Online · Detalles que marcan · 0984 334 677</footer>
+<script>
+document.querySelectorAll('button').forEach(b=>b.onclick=()=>{document.querySelectorAll('button').forEach(x=>x.classList.remove('active'));b.classList.add('active');let f=b.dataset.f;document.querySelectorAll('.card').forEach(c=>c.style.display=f==='Todos'||c.dataset.cat===f?'block':'none')})
+</script></body></html>
