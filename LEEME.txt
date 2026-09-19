@@ -1,0 +1,9 @@
+HL&L STORE ONLINE
+
+index.html = página principal
+admin.html = formulario para preparar productos
+products.json = catálogo
+
+Para publicar gratis: subir los 3 archivos a un repositorio de GitHub y activar GitHub Pages.
+
+Nota: esta primera versión usa URL de imagen. Después podemos hacer una versión donde las fotos se carguen directamente desde el celular mediante un panel online.
